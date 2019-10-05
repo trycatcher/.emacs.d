@@ -52,3 +52,19 @@
         (concat smex-dir "smex-save.el"))))
   (global-set-key (kbd "M-x") 'smex)
   (global-set-key (kbd "M-X") 'smex-major-mode-commands))
+
+;; Use company-mode for in-buffer autocompletion
+(use-package company
+  :ensure t
+  :init (add-hook 'after-init-hook 'company-mode)
+  :config
+  (setq company-tooltip-limit 10)
+  (setq company-idle-delay 0.2)
+  (setq company-echo-delay 0)
+  (setq company-minimum-prefix-length 3)
+  (setq company-require-match nil)
+  (setq company-selection-wrap-around t)
+  (setq company-tooltip-align-annotations t)
+  (setq company-tooltip-flip-when-above t)
+  ;; weight by frequency
+  (setq company-transformers '(company-sort-by-occurence)))
