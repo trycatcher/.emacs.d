@@ -8,10 +8,6 @@
 (column-number-mode 1)
 ; (delete-selection-mode 1)
 
-;; Move custom configuration variables set by Emacs, to a seperate file
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
-
 (package-initialize)
 
 ;; Install use-package
@@ -32,6 +28,16 @@
 
 (use-package magit
   :ensure t)
-
 (global-set-key (kbd "s-m") 'magit-status)
-    
+
+(use-package no-littering
+  :ensure t
+  :config
+  ;; TODO: Might also want to do this for tramp files
+  (setq auto-save-file-name-transforms
+    `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+  (setq backup-directory-alist
+    `((".*" . (no-littering-expand-var-file-name "backup/"))))
+  ;; Move custom configuration variables set by Emacs, to a seperate file
+  (setq custom-file
+    (no-littering-expand-etc-file-name "custom.el")))
