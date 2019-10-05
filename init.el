@@ -7,3 +7,7 @@
 (global-visual-line-mode 1)
 (column-number-mode 1)
 ; (delete-selection-mode 1)
+
+;; Move custom configuration variables set by Emacs, to a seperate file
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
