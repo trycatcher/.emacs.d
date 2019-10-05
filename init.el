@@ -41,3 +41,14 @@
   ;; Move custom configuration variables set by Emacs, to a seperate file
   (setq custom-file
     (no-littering-expand-etc-file-name "custom.el")))
+
+(use-package smex
+  :ensure t
+  :config
+  (let ((smex-dir (concat (no-littering-expand-var-file-name "smex"))))
+    (unless (file-exists-p smex-dir)
+      (make-directory smex-dir) ;; smex is not no-littering compatible yet
+      (setq smex-save-file
+        (concat smex-dir "smex-save.el"))))
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands))
