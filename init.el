@@ -22,3 +22,12 @@
 (setq use-package-verbose t)
 ;; The :ensure keyword causes the package(s) to be installed automatically if not already present on your system:
 (setq use-package-always-ensure t)
+
+;; Do not use tabs for indentation
+(setq-default indent-tabs-mode nil)
+;; Merge indentation offset and tab-width variables
+(setq tab-width 2)
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'cperl-indent-level 'tab-width)
+    
+    
