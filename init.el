@@ -37,7 +37,7 @@
   (setq auto-save-file-name-transforms
     `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
   (setq backup-directory-alist
-    `((".*" . (no-littering-expand-var-file-name "backup/"))))
+    `((".*" . ,(no-littering-expand-var-file-name "backup/"))))
   ;; Move custom configuration variables set by Emacs, to a seperate file
   (setq custom-file
     (no-littering-expand-etc-file-name "custom.el")))
