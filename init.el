@@ -29,5 +29,9 @@
 (setq tab-width 2)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
-    
+
+(use-package magit
+  :ensure t)
+
+(global-set-key (kbd "s-m") 'magit-status)
     
