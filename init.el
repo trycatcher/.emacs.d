@@ -91,3 +91,7 @@
   :ensure t
   :config
   (which-key-mode))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
