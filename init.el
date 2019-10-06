@@ -81,3 +81,8 @@
 
 (use-package gruvbox-theme
   :ensure t)
+
+(use-package paradox
+  :ensure t
+  :config
+  (paradox-enable))
