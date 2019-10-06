@@ -27,8 +27,9 @@
 (defvaralias 'cperl-indent-level 'tab-width)
 
 (use-package magit
-  :ensure t)
-(global-set-key (kbd "s-m") 'magit-status)
+  :ensure t
+  :config
+  (global-set-key (kbd "s-m") 'magit-status))
 
 (use-package no-littering
   :ensure t
