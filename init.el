@@ -69,3 +69,15 @@
   (setq company-tooltip-flip-when-above t)
   ;; weight by frequency
   (setq company-transformers '(company-sort-by-occurence)))
+
+(use-package solarized-theme
+  :ensure t)
+
+(use-package zenburn-theme
+  :ensure t)
+
+(use-package monokai-theme
+  :ensure t)
+
+(use-package gruvbox-theme
+  :ensure t)
