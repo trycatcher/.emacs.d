@@ -86,3 +86,8 @@
   :ensure t
   :config
   (paradox-enable))
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
