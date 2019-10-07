@@ -122,6 +122,12 @@
   :config
   (powerline-default-theme))
 
+(use-package ace-window
+  :ensure t
+  :config
+  (global-set-key (kbd "s-w") 'ace-window)
+  (global-set-key [remap other-window] 'ace-window))
+
 (set-frame-font "Inconsolata-12" )
 
 (load-theme 'solarized-light t)
