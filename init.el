@@ -71,16 +71,20 @@
   (setq company-transformers '(company-sort-by-occurence)))
 
 (use-package solarized-theme
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package zenburn-theme
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package monokai-theme
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package gruvbox-theme
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package paradox
   :ensure t
@@ -114,3 +118,5 @@
   (global-set-key (kbd "C-x C-f") 'counsel-find-file))
 
 (set-frame-font "Inconsolata-12" )
+
+(load-theme 'solarized-light t)
