@@ -128,6 +128,13 @@
   (global-set-key (kbd "s-w") 'ace-window)
   (global-set-key [remap other-window] 'ace-window))
 
+(use-package avy
+  :ensure t
+  :bind (("s-." . avy-goto-word-or-subword-1)
+         ("s-," . avy-goto-char))
+  :config
+  (setq avy-background t))
+
 (set-frame-font "Inconsolata-12" )
 
 (load-theme 'solarized-light t)
