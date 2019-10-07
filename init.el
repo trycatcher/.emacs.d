@@ -95,3 +95,20 @@
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
+
+(use-package ivy
+  :ensure t
+  :config
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "%d%d "))
+
+(use-package swiper
+  :ensure t
+  :config
+  (global-set-key (kbd "C-s") 'swiper))
+
+(use-package counsel
+  :ensure t
+  :config
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file))
