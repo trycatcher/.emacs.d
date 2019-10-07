@@ -117,6 +117,11 @@
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file))
 
+(use-package powerline
+  :ensure t
+  :config
+  (powerline-default-theme))
+
 (set-frame-font "Inconsolata-12" )
 
 (load-theme 'solarized-light t)
