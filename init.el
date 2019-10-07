@@ -135,6 +135,8 @@
   :config
   (setq avy-background t))
 
+(winner-mode 1)
+
 (set-frame-font "Inconsolata-12" )
 
 (load-theme 'solarized-light t)
