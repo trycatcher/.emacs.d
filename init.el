@@ -154,6 +154,10 @@
   :mode (("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . gfm-mode)))
 
+(use-package adoc-mode
+  :ensure t
+  :mode "\\.adoc\\'")
+
 (winner-mode 1)
 
 (set-frame-font "Inconsolata-12" )
