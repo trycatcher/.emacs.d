@@ -144,6 +144,11 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1))
 
+(use-package counsel-projectile
+  :ensure t
+  :config
+  (counsel-projectile-mode))
+
 (winner-mode 1)
 
 (set-frame-font "Inconsolata-12" )
