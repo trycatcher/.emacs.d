@@ -149,6 +149,11 @@
   :config
   (counsel-projectile-mode))
 
+(use-package markdown-mode
+  :ensure t
+  :mode (("\\.md\\'" . gfm-mode)
+         ("\\.markdown\\'" . gfm-mode)))
+
 (winner-mode 1)
 
 (set-frame-font "Inconsolata-12" )
