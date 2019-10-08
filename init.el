@@ -158,6 +158,11 @@
   :ensure t
   :mode "\\.adoc\\'")
 
+(use-package yaml-mode
+  :ensure t
+  :config
+  (define-key yaml-mode-map "\C-m" 'newline-and-indent))
+
 (winner-mode 1)
 
 (set-frame-font "Inconsolata-12" )
