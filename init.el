@@ -181,6 +181,9 @@
   :config
   (define-key yaml-mode-map "\C-m" 'newline-and-indent))
 
+(use-package repl-toggle
+  :ensure t)
+
 (winner-mode 1)
 
 (set-frame-font "Inconsolata-12" )
