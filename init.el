@@ -1,3 +1,21 @@
+;;; package --- Summary
+;;
+;; init.el - Abhik'd Emacs configuration
+;;
+;; Copyright 2019 Abhik Khanra
+;;
+;; Author: Abhik Khanra <abhik.rk@gmail.com>
+;;
+;;; Commentary:
+;;
+;; This is my personal Emacs configuration.
+;;
+;;; License:
+;;
+;; FIXME: Add license
+;;
+;;; Code:
+
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
@@ -168,3 +186,5 @@
 (set-frame-font "Inconsolata-12" )
 
 (load-theme 'solarized-light t)
+
+;;; init.el ends here
