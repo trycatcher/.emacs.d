@@ -1,6 +1,6 @@
 ;;; package --- Summary
 ;;
-;; init.el - Abhik'd Emacs configuration
+;; init.el - Abhik's Emacs configuration
 ;;
 ;; Copyright 2019 Abhik Khanra
 ;;
@@ -183,6 +183,32 @@
 
 (use-package repl-toggle
   :ensure t)
+
+(use-package purescript-mode
+  :ensure t
+  :defer t
+  :config
+  (setq browse-url-browser-function 'eww-browse-url))
+
+(use-package psci
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'purescript-mode-hook 'inferior-psci-mode)
+  (add-to-list 'rtog/mode-repl-alist '(purescript-mode . psci)))
+
+(use-package psc-ide
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'purescript-mode-hook 'psc-ide-mode)
+  (add-hook 'purescript-mode-hook 'company-mode)
+  (add-hook 'purescript-mode-hook 'flycheck-mode)
+  (add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
+  :config
+  (setq psc-ide-rebuild-on-save t)
+  ;; FIXME: This isn't working
+  (setq psc-ide-add-import-on-completion t))
 
 (winner-mode 1)
 
