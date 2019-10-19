@@ -210,6 +210,69 @@
   ;; FIXME: This isn't working
   (setq psc-ide-add-import-on-completion t))
 
+;; Better syntax highlighting for Clojure
+(use-package clojure-mode-extra-font-locking
+  :ensure t
+  :defer t)
+
+(use-package paredit
+  :ensure t
+  :defer t
+  :init
+  (add-hook 'clojure-mode-hook 'enable-paredit-mode)
+  (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
+
+;; To add some colors to parens
+(use-package rainbow-delimiters
+  :ensure t
+  :defer t
+  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package cider
+  :ensure t
+  :defer t
+  :init
+  (setq cider-repl-pop-to-buffer-on-connect t
+        cider-show-error-buffer t
+        cider-auto-select-error-buffer t
+        cider-repl-history-file "~/.emacs.d/var/cider-history"
+        cider-repl-wrap-history t
+        cider-repl-history-size 100
+        cider-repl-use-clojure-font-lock t
+        cider-docview-fill-column 70
+        cider-stacktrace-fill-column 76
+        ;; Stop error buffer from popping up while working in buffers other than REPL:
+        nrepl-popup-stacktraces nil
+        nrepl-log-messages nil
+        nrepl-hide-special-buffers t
+        cider-repl-use-pretty-printing t
+        cider-repl-result-prefix ";; => ")
+  :config
+  (add-hook 'cider-mode-hook 'eldoc-mode)
+  (add-hook 'cider-repl-mode-hook 'paredit-mode)
+  (add-hook 'cider-repl-mode-hook 'company-mode)
+  (add-hook 'cider-mode-hook 'company-mode)
+  (add-hook 'cider-mode-hook
+            (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)))
+
+(use-package clj-refactor
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'clojure-mode-hook
+            (lambda ()
+              (clj-refactor-mode 1))))
+
+
+;; Aggressively indent your clojure code
+(use-package aggressive-indent
+  :ensure t
+  :defer t
+  :commands (aggressive-indent-mode)
+  :config
+  (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
+
 (winner-mode 1)
 
 (set-frame-font "Inconsolata-12" )
