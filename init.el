@@ -273,6 +273,19 @@
   :config
   (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
 
+(use-package ox-reveal
+  :ensure t
+  :defer t
+  :config
+  (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+  ;; FIXME: Add MathJax support
+  ;(setq org-reveal-mathjax  )
+  )
+
+(use-package htmlize
+  :ensure t
+  :defer t)
+
 (winner-mode 1)
 
 (set-frame-font "Inconsolata-12" )
