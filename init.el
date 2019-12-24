@@ -75,8 +75,9 @@
 ;; Use company-mode for in-buffer autocompletion
 (use-package company
   :ensure t
-  :init (add-hook 'after-init-hook 'company-mode)
+  :init (add-hook 'prog-mode-hook 'company-mode)
   :config
+  (global-company-mode)
   (setq company-tooltip-limit 10)
   (setq company-idle-delay 0.2)
   (setq company-echo-delay 0)
@@ -285,6 +286,34 @@
 (use-package htmlize
   :ensure t
   :defer t)
+
+(use-package haskell-mode
+  :ensure t
+  :defer t)
+
+(use-package intero
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'haskell-mode-hook 'intero-mode))
+
+(use-package hindent
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'haskell-mode-hook 'hindent-mode))
+
+(use-package flymake-hlint
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'haskell-mode-hook 'flymake-hlint-load))
+
+(use-package hlint-refactor
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'haskell-mode-hook 'hlint-refactor-mode))
 
 (winner-mode 1)
 
