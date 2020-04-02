@@ -333,7 +333,7 @@
 
 (winner-mode 1)
 
-(set-frame-font "Inconsolata-12" )
+(set-frame-font "Fira code-12" )
 
 (load-theme 'solarized-light t)
 
