@@ -327,6 +327,10 @@
   (define-key rust-mode-map (kbd "C-c C-t") 'rust-test)
   (define-key rust-mode-map (kbd "C-c C-l") 'rust-run-clippy))
 
+(use-package json-mode
+  :ensure t
+  :defer t)
+
 (winner-mode 1)
 
 (set-frame-font "Inconsolata-12" )
