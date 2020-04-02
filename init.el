@@ -315,6 +315,18 @@
   :config
   (add-hook 'haskell-mode-hook 'hlint-refactor-mode))
 
+(use-package rust-mode
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'rust-mode-hook
+            (lambda () (setq indent-tabs-mode nil)))
+  (setq rust-format-on-save t)
+  (define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
+  (define-key rust-mode-map (kbd "C-c C-k") 'rust-compile)
+  (define-key rust-mode-map (kbd "C-c C-t") 'rust-test)
+  (define-key rust-mode-map (kbd "C-c C-l") 'rust-run-clippy))
+
 (winner-mode 1)
 
 (set-frame-font "Inconsolata-12" )
