@@ -75,19 +75,7 @@
 ;; Use company-mode for in-buffer autocompletion
 (use-package company
   :ensure t
-  :init (add-hook 'prog-mode-hook 'company-mode)
-  :config
-  (global-company-mode)
-  (setq company-tooltip-limit 10)
-  (setq company-idle-delay 0.2)
-  (setq company-echo-delay 0)
-  (setq company-minimum-prefix-length 3)
-  (setq company-require-match nil)
-  (setq company-selection-wrap-around t)
-  (setq company-tooltip-align-annotations t)
-  (setq company-tooltip-flip-when-above t)
-  ;; weight by frequency
-  (setq company-transformers '(company-sort-by-occurence)))
+  :init (global-company-mode))
 
 (use-package solarized-theme
   :ensure t
@@ -326,6 +314,18 @@
   (define-key rust-mode-map (kbd "C-c C-k") 'rust-compile)
   (define-key rust-mode-map (kbd "C-c C-t") 'rust-test)
   (define-key rust-mode-map (kbd "C-c C-l") 'rust-run-clippy))
+
+(use-package elpy
+  :ensure t
+  :defer t
+  :init
+  (elpy-enable)
+  :config
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode)
+  (add-hook 'elpy-mode-hook
+            (lambda ()
+              (add-hook 'before-save-hook 'elpy-black-fix-code nil t))))
 
 (use-package json-mode
   :ensure t
