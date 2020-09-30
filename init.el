@@ -331,6 +331,10 @@
   :ensure t
   :defer t)
 
+(use-package sml-mode
+  :ensure t
+  :defer t)
+
 (winner-mode 1)
 
 (set-frame-font "Fira code-12" )
