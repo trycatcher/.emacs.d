@@ -44,6 +44,9 @@
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
 
+(use-package keychain-environment
+  :ensure t)
+
 (use-package magit
   :ensure t
   :config
