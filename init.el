@@ -218,6 +218,14 @@
   :defer t
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+(use-package flycheck-clj-kondo
+  :ensure t)
+
+(use-package clojure-mode
+  :ensure t
+  :config
+  (require 'flycheck-clj-kondo))
+
 (use-package cider
   :ensure t
   :defer t
