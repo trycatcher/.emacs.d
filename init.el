@@ -348,6 +348,15 @@
 
 (winner-mode 1)
 
+(use-package lsp-mode
+    :hook ((go-mode . lsp))
+    :commands (lsp lsp-deferred)
+    :init
+    (setq lsp-keymap-prefix "C-c l")
+    :config
+    (lsp-enable-which-key-integration t))
+
+
 (set-frame-font "Fira code-12" )
 
 (load-theme 'solarized-light t)
