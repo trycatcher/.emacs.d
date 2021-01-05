@@ -356,6 +356,7 @@
     :config
     (lsp-enable-which-key-integration t))
 
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
 (set-frame-font "Fira code-12" )
 
