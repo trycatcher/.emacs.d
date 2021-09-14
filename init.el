@@ -286,34 +286,6 @@
   :ensure t
   :defer t)
 
-(use-package haskell-mode
-  :ensure t
-  :defer t)
-
-(use-package intero
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'haskell-mode-hook 'intero-mode))
-
-(use-package hindent
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'haskell-mode-hook 'hindent-mode))
-
-(use-package flymake-hlint
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'haskell-mode-hook 'flymake-hlint-load))
-
-(use-package hlint-refactor
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'haskell-mode-hook 'hlint-refactor-mode))
-
 (use-package rust-mode
   :ensure t
   :defer t
@@ -348,8 +320,14 @@
 
 (winner-mode 1)
 
+(use-package lsp-haskell
+  :ensure t
+  :defer t)
+
 (use-package lsp-mode
-    :hook ((go-mode . lsp))
+  :hook ((go-mode . lsp)
+         (haskell-mode . lsp)
+         (haskell-literate-mode . lsp))
     :commands (lsp lsp-deferred)
     :init
     (setq lsp-keymap-prefix "C-c l")
