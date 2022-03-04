@@ -213,7 +213,9 @@
   :init
   (add-hook 'clojure-mode-hook 'enable-paredit-mode)
   (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
+  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+  (add-hook 'racket-mode-hook 'enable-paredit-mode)
+  (add-hook 'racket-repl-mode-hook 'enable-paredit-mode))
 
 ;; To add some colors to parens
 (use-package rainbow-delimiters
@@ -315,6 +317,10 @@
   :defer t)
 
 (use-package sml-mode
+  :ensure t
+  :defer t)
+
+(use-package racket-mode
   :ensure t
   :defer t)
 
