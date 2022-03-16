@@ -324,6 +324,30 @@
   :ensure t
   :defer t)
 
+(use-package typescript-mode
+  :ensure t
+  :defer t)
+
+(use-package web-mode
+  :hook ((web-mode . lsp)
+         (typescript-tsx-mode . lsp))
+  :mode (("\\.html\\'" . web-mode)
+         ("\\.tsx\\'" . typescript-tsx-mode))
+  :init
+  (define-derived-mode typescript-tsx-mode typescript-mode "TypeScript-tsx")
+  :config
+  (setq web-mode-markup-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-code-indent-offset 2))
+
+(use-package prettier
+  :hook ((typescript-tsx-mode . prettier-mode)
+         (typescript-mode . prettier-mode)
+         (js-mode . prettier-mode)
+         (json-mode . prettier-mode)
+         (css-mode . prettier-mode)
+         (scss-mode . prettier-mode)))
+
 (use-package lsp-mode
   :hook ((go-mode . lsp)
          (haskell-mode . lsp)
@@ -336,7 +360,7 @@
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
-(set-frame-font "Fira code-12" )
+(set-frame-font "Fira code Nerd Font-14")
 
 (load-theme 'solarized-light t)
 
