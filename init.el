@@ -33,6 +33,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+(require 'quelpa-use-package)
 (setq use-package-verbose t)
 ;; The :ensure keyword causes the package(s) to be installed automatically if not already present on your system:
 (setq use-package-always-ensure t)
@@ -232,8 +233,11 @@
   (require 'flycheck-clj-kondo))
 
 (use-package cider
-  :ensure t
-  :defer t
+  :quelpa
+  (cider
+   :fetcher github
+   :repo "clojure-emacs/cider"
+   :commit "b2cee7fc301735b403920583cc2c23dcf70990a3")
   :init
   (setq cider-repl-pop-to-buffer-on-connect t
         cider-show-error-buffer t
@@ -265,7 +269,6 @@
   (add-hook 'clojure-mode-hook
             (lambda ()
               (clj-refactor-mode 1))))
-
 
 ;; Aggressively indent your clojure code
 (use-package aggressive-indent
@@ -335,8 +338,7 @@
   :defer t)
 
 (use-package web-mode
-  :hook ((web-mode . lsp)
-         (typescript-tsx-mode . lsp))
+  :hook ((typescript-tsx-mode . lsp))
   :mode (("\\.html\\'" . web-mode)
          ("\\.tsx\\'" . typescript-tsx-mode))
   :init
@@ -344,7 +346,9 @@
   :config
   (setq web-mode-markup-indent-offset 2
         web-mode-css-indent-offset 2
-        web-mode-code-indent-offset 2))
+        web-mode-code-indent-offset 2
+        web-mode-comment-style 2
+        web-mode-enable-css-colorization t))
 
 (use-package prettier
   :hook ((typescript-tsx-mode . prettier-mode)
@@ -366,7 +370,15 @@
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
-(set-frame-font "Fira code Nerd Font-14")
+(use-package quelpa
+  :ensure t
+  :defer t)
+
+(use-package quelpa-use-package
+  :ensure t
+  :defer t)
+
+(set-frame-font "Fira code-12")
 
 (load-theme 'solarized-light t)
 
