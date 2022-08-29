@@ -378,6 +378,22 @@
   :ensure t
   :defer t)
 
+;; Stop SLIME's REPL from grabbing DEL,
+;; which is annoying when backspacing over a '('
+(defun override-slime-repl-bindings-with-paredit ()
+  (define-key slime-repl-mode-map
+    (read-kbd-macro paredit-backward-delete-key)
+    nil))
+
+(use-package slime
+  :ensure t
+  :defer t
+  :init
+  (setq inferior-lisp-program "sbcl")
+  :config
+  (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+  (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit))
+
 (set-frame-font "Fira code-12")
 
 (load-theme 'solarized-light t)
