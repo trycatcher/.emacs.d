@@ -378,16 +378,16 @@
   :ensure t
   :defer t)
 
-;; Stop SLIME's REPL from grabbing DEL,
-;; which is annoying when backspacing over a '('
-(defun override-slime-repl-bindings-with-paredit ()
-  (define-key slime-repl-mode-map
-    (read-kbd-macro paredit-backward-delete-key)
-    nil))
-
 (use-package slime
   :ensure t
   :defer t
+  :preface
+  ;; Stop SLIME's REPL from grabbing DEL,
+  ;; when backspacing over a '('
+  (defun override-slime-repl-bindings-with-paredit ()
+    (define-key slime-repl-mode-map
+      (read-kbd-macro paredit-backward-delete-key)
+      nil))
   :init
   (setq inferior-lisp-program "sbcl")
   :config
