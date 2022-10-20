@@ -125,7 +125,7 @@
 
 (use-package projectile
   :bind-keymap
-  ("C-c p" . 'projectile-command-map)
+  ("C-c p" . projectile-command-map)
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-mode +1))
