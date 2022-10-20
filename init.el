@@ -48,8 +48,7 @@
 (use-package keychain-environment)
 
 (use-package magit
-  :config
-  (global-set-key (kbd "s-m") 'magit-status))
+  :bind ("s-m" . 'magit-status))
 
 (use-package no-littering
   :config
@@ -68,9 +67,9 @@
     (unless (file-exists-p smex-dir)
       (make-directory smex-dir) ;; smex is not no-littering compatible yet
       (setq smex-save-file
-        (concat smex-dir "smex-save.el"))))
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "M-X") 'smex-major-mode-commands))
+            (concat smex-dir "smex-save.el"))))
+  :bind (("M-x" . 'smex)
+         ("M-X" . 'smex-major-mode-commands)))
 
 ;; Use company-mode for in-buffer autocompletion
 (use-package company
@@ -101,22 +100,22 @@
         ivy-count-format "%d%d "))
 
 (use-package swiper
-  :config
-  (global-set-key (kbd "C-s") 'swiper))
+  :bind
+  ("C-s" . 'swiper))
 
 (use-package counsel
-  :config
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file))
+  :bind
+  (("M-x" . 'counsel-M-x)
+   ("C-x C-f" . 'counsel-find-file)))
 
 (use-package powerline
   :config
   (powerline-default-theme))
 
 (use-package ace-window
-  :config
-  (global-set-key (kbd "s-w") 'ace-window)
-  (global-set-key [remap other-window] 'ace-window))
+  :bind
+  (("s-w" . 'ace-window)
+   ([remap other-window] . 'ace-window)))
 
 (use-package avy
   :bind (("s-." . avy-goto-word-or-subword-1)
@@ -125,11 +124,11 @@
   (setq avy-background t))
 
 (use-package projectile
+  :bind-keymap
+  ("C-c p" . 'projectile-command-map)
   :init
   (setq projectile-completion-system 'ivy)
   :config
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1))
 
 (use-package counsel-projectile
@@ -144,8 +143,9 @@
   :mode "\\.adoc\\'")
 
 (use-package yaml-mode
-  :config
-  (define-key yaml-mode-map "\C-m" 'newline-and-indent))
+  :bind
+  (:map yaml-mode-map
+        ("C-m" . 'newline-and-indent)))
 
 (use-package repl-toggle)
 
@@ -239,14 +239,16 @@
 (use-package htmlize)
 
 (use-package rust-mode
+  :bind
+  (:map rust-mode-map
+        (("C-c C-c" . 'rust-run)
+         ("C-c C-k" . 'rust-compile)
+         ("C-c C-t" . 'rust-test)
+         ("C-c C-l" . 'rust-run-clippy)))
   :config
   (add-hook 'rust-mode-hook
             (lambda () (setq indent-tabs-mode nil)))
-  (setq rust-format-on-save t)
-  (define-key rust-mode-map (kbd "C-c C-c") 'rust-run)
-  (define-key rust-mode-map (kbd "C-c C-k") 'rust-compile)
-  (define-key rust-mode-map (kbd "C-c C-t") 'rust-test)
-  (define-key rust-mode-map (kbd "C-c C-l") 'rust-run-clippy))
+  (setq rust-format-on-save t))
 
 (use-package elpy
   :init
