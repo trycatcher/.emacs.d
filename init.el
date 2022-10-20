@@ -45,16 +45,13 @@
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
 
-(use-package keychain-environment
-  :ensure t)
+(use-package keychain-environment)
 
 (use-package magit
-  :ensure t
   :config
   (global-set-key (kbd "s-m") 'magit-status))
 
 (use-package no-littering
-  :ensure t
   :config
   ;; TODO: Might also want to do this for tramp files
   (setq auto-save-file-name-transforms
@@ -66,7 +63,6 @@
     (no-littering-expand-etc-file-name "custom.el")))
 
 (use-package smex
-  :ensure t
   :config
   (let ((smex-dir (concat (no-littering-expand-var-file-name "smex"))))
     (unless (file-exists-p smex-dir)
@@ -78,72 +74,57 @@
 
 ;; Use company-mode for in-buffer autocompletion
 (use-package company
-  :ensure t
   :init (global-company-mode))
 
-(use-package solarized-theme
-  :ensure t)
+(use-package solarized-theme)
 
-(use-package zenburn-theme
-  :ensure t)
+(use-package zenburn-theme)
 
-(use-package monokai-theme
-  :ensure t)
+(use-package monokai-theme)
 
-(use-package gruvbox-theme
-  :ensure t)
+(use-package gruvbox-theme)
 
 (use-package paradox
-  :ensure t
   :config
   (paradox-enable))
 
 (use-package which-key
-  :ensure t
   :config
   (which-key-mode))
 
 (use-package flycheck
-  :ensure t
   :init (global-flycheck-mode))
 
 (use-package ivy
-  :ensure t
   :config
   (setq ivy-use-virtual-buffers t
         ivy-count-format "%d%d "))
 
 (use-package swiper
-  :ensure t
   :config
   (global-set-key (kbd "C-s") 'swiper))
 
 (use-package counsel
-  :ensure t
   :config
   (global-set-key (kbd "M-x") 'counsel-M-x)
   (global-set-key (kbd "C-x C-f") 'counsel-find-file))
 
 (use-package powerline
-  :ensure t
   :config
   (powerline-default-theme))
 
 (use-package ace-window
-  :ensure t
   :config
   (global-set-key (kbd "s-w") 'ace-window)
   (global-set-key [remap other-window] 'ace-window))
 
 (use-package avy
-  :ensure t
   :bind (("s-." . avy-goto-word-or-subword-1)
          ("s-," . avy-goto-char))
   :config
   (setq avy-background t))
 
 (use-package projectile
-  :ensure t
   :init
   (setq projectile-completion-system 'ivy)
   :config
@@ -152,40 +133,32 @@
   (projectile-mode +1))
 
 (use-package counsel-projectile
-  :ensure t
   :config
   (counsel-projectile-mode))
 
 (use-package markdown-mode
-  :ensure t
   :mode (("\\.md\\'" . gfm-mode)
          ("\\.markdown\\'" . gfm-mode)))
 
 (use-package adoc-mode
-  :ensure t
   :mode "\\.adoc\\'")
 
 (use-package yaml-mode
-  :ensure t
   :config
   (define-key yaml-mode-map "\C-m" 'newline-and-indent))
 
-(use-package repl-toggle
-  :ensure t)
+(use-package repl-toggle)
 
 (use-package purescript-mode
-  :ensure t
   :config
   (setq browse-url-browser-function 'eww-browse-url))
 
 (use-package psci
-  :ensure t
   :init
   (add-hook 'purescript-mode-hook 'inferior-psci-mode)
   (add-to-list 'rtog/mode-repl-alist '(purescript-mode . psci)))
 
 (use-package psc-ide
-  :ensure t
   :init
   (add-hook 'purescript-mode-hook 'psc-ide-mode)
   (add-hook 'purescript-mode-hook 'company-mode)
@@ -197,24 +170,19 @@
   (setq psc-ide-add-import-on-completion t))
 
 ;; Better syntax highlighting for Clojure
-(use-package clojure-mode-extra-font-locking
-  :ensure t)
+(use-package clojure-mode-extra-font-locking)
 
 (use-package paredit
-  :ensure t
   :init
   (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
 
 ;; To add some colors to parens
 (use-package rainbow-delimiters
-  :ensure t
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
-(use-package flycheck-clj-kondo
-  :ensure t)
+(use-package flycheck-clj-kondo)
 
 (use-package clojure-mode
-  :ensure t
   :config
   (require 'flycheck-clj-kondo)
   (add-hook 'clojure-mode-hook 'enable-paredit-mode))
@@ -250,7 +218,6 @@
             (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)))
 
 (use-package clj-refactor
-  :ensure t
   :config
   (add-hook 'clojure-mode-hook
             (lambda ()
@@ -258,24 +225,20 @@
 
 ;; Aggressively indent your clojure code
 (use-package aggressive-indent
-  :ensure t
   :commands (aggressive-indent-mode)
   :config
   (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
 
 (use-package ox-reveal
-  :ensure t
   :config
   (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
   ;; FIXME: Add MathJax support
   ;(setq org-reveal-mathjax  )
   )
 
-(use-package htmlize
-  :ensure t)
+(use-package htmlize)
 
 (use-package rust-mode
-  :ensure t
   :config
   (add-hook 'rust-mode-hook
             (lambda () (setq indent-tabs-mode nil)))
@@ -286,7 +249,6 @@
   (define-key rust-mode-map (kbd "C-c C-l") 'rust-run-clippy))
 
 (use-package elpy
-  :ensure t
   :init
   (elpy-enable)
   :config
@@ -296,25 +258,20 @@
             (lambda ()
               (add-hook 'before-save-hook 'elpy-black-fix-code nil t))))
 
-(use-package json-mode
-  :ensure t)
+(use-package json-mode)
 
-(use-package sml-mode
-  :ensure t)
+(use-package sml-mode)
 
 (use-package racket-mode
-  :ensure t
   :config
   (add-hook 'racket-mode-hook 'enable-paredit-mode)
   (add-hook 'racket-repl-mode-hook 'enable-paredit-mode))
 
 (winner-mode 1)
 
-(use-package lsp-haskell
-  :ensure t)
+(use-package lsp-haskell)
 
-(use-package typescript-mode
-  :ensure t)
+(use-package typescript-mode)
 
 (use-package web-mode
   :hook ((typescript-tsx-mode . lsp))
@@ -349,14 +306,11 @@
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
-(use-package quelpa
-  :ensure t)
+(use-package quelpa)
 
-(use-package quelpa-use-package
-  :ensure t)
+(use-package quelpa-use-package)
 
 (use-package slime
-  :ensure t
   :preface
   ;; Stop SLIME's REPL from grabbing DEL,
   ;; when backspacing over a '('
@@ -370,8 +324,7 @@
   (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
   (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit))
 
-(use-package zig-mode
-  :ensure t)
+(use-package zig-mode)
 
 (set-frame-font "Fira code-12")
 
