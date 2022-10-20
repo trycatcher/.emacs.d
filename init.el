@@ -73,7 +73,7 @@
 
 ;; Use company-mode for in-buffer autocompletion
 (use-package company
-  :init (global-company-mode))
+  :config (global-company-mode))
 
 (use-package solarized-theme)
 
@@ -92,7 +92,7 @@
   (which-key-mode))
 
 (use-package flycheck
-  :init (global-flycheck-mode))
+  :config (global-flycheck-mode))
 
 (use-package ivy
   :config
@@ -126,9 +126,8 @@
 (use-package projectile
   :bind-keymap
   ("C-c p" . 'projectile-command-map)
-  :init
-  (setq projectile-completion-system 'ivy)
   :config
+  (setq projectile-completion-system 'ivy)
   (projectile-mode +1))
 
 (use-package counsel-projectile
@@ -154,17 +153,16 @@
   (setq browse-url-browser-function 'eww-browse-url))
 
 (use-package psci
-  :init
+  :config
   (add-hook 'purescript-mode-hook 'inferior-psci-mode)
   (add-to-list 'rtog/mode-repl-alist '(purescript-mode . psci)))
 
 (use-package psc-ide
-  :init
+  :config
   (add-hook 'purescript-mode-hook 'psc-ide-mode)
   (add-hook 'purescript-mode-hook 'company-mode)
   (add-hook 'purescript-mode-hook 'flycheck-mode)
   (add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
-  :config
   (setq psc-ide-rebuild-on-save t)
   ;; FIXME: This isn't working
   (setq psc-ide-add-import-on-completion t))
@@ -173,12 +171,12 @@
 (use-package clojure-mode-extra-font-locking)
 
 (use-package paredit
-  :init
+  :config
   (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
 
 ;; To add some colors to parens
 (use-package rainbow-delimiters
-  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package flycheck-clj-kondo)
 
@@ -193,7 +191,7 @@
    :fetcher github
    :repo "clojure-emacs/cider"
    :commit "b2cee7fc301735b403920583cc2c23dcf70990a3")
-  :init
+  :config
   (setq cider-repl-pop-to-buffer-on-connect t
         cider-show-error-buffer t
         cider-auto-select-error-buffer t
@@ -209,7 +207,6 @@
         nrepl-hide-special-buffers t
         cider-repl-use-pretty-printing t
         cider-repl-result-prefix ";; => ")
-  :config
   (add-hook 'cider-mode-hook 'eldoc-mode)
   (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
   (add-hook 'cider-repl-mode-hook 'company-mode)
@@ -301,9 +298,8 @@
          (haskell-mode . lsp)
          (haskell-literate-mode . lsp))
     :commands (lsp lsp-deferred)
-    :init
-    (setq lsp-keymap-prefix "C-c l")
     :config
+    (setq lsp-keymap-prefix "C-c l")
     (lsp-enable-which-key-integration t))
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
@@ -320,9 +316,8 @@
     (define-key slime-repl-mode-map
       (read-kbd-macro paredit-backward-delete-key)
       nil))
-  :init
-  (setq inferior-lisp-program "sbcl")
   :config
+  (setq inferior-lisp-program "sbcl")
   (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
   (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit))
 
