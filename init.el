@@ -82,20 +82,16 @@
   :init (global-company-mode))
 
 (use-package solarized-theme
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package zenburn-theme
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package monokai-theme
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package gruvbox-theme
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package paradox
   :ensure t
@@ -179,20 +175,17 @@
 
 (use-package purescript-mode
   :ensure t
-  :defer t
   :config
   (setq browse-url-browser-function 'eww-browse-url))
 
 (use-package psci
   :ensure t
-  :defer t
   :init
   (add-hook 'purescript-mode-hook 'inferior-psci-mode)
   (add-to-list 'rtog/mode-repl-alist '(purescript-mode . psci)))
 
 (use-package psc-ide
   :ensure t
-  :defer t
   :init
   (add-hook 'purescript-mode-hook 'psc-ide-mode)
   (add-hook 'purescript-mode-hook 'company-mode)
@@ -205,19 +198,16 @@
 
 ;; Better syntax highlighting for Clojure
 (use-package clojure-mode-extra-font-locking
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package paredit
   :ensure t
-  :defer t
   :init
   (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
 
 ;; To add some colors to parens
 (use-package rainbow-delimiters
   :ensure t
-  :defer t
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package flycheck-clj-kondo
@@ -261,7 +251,6 @@
 
 (use-package clj-refactor
   :ensure t
-  :defer t
   :config
   (add-hook 'clojure-mode-hook
             (lambda ()
@@ -270,14 +259,12 @@
 ;; Aggressively indent your clojure code
 (use-package aggressive-indent
   :ensure t
-  :defer t
   :commands (aggressive-indent-mode)
   :config
   (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
 
 (use-package ox-reveal
   :ensure t
-  :defer t
   :config
   (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
   ;; FIXME: Add MathJax support
@@ -285,12 +272,10 @@
   )
 
 (use-package htmlize
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package rust-mode
   :ensure t
-  :defer t
   :config
   (add-hook 'rust-mode-hook
             (lambda () (setq indent-tabs-mode nil)))
@@ -302,7 +287,6 @@
 
 (use-package elpy
   :ensure t
-  :defer t
   :init
   (elpy-enable)
   :config
@@ -313,16 +297,13 @@
               (add-hook 'before-save-hook 'elpy-black-fix-code nil t))))
 
 (use-package json-mode
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package sml-mode
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package racket-mode
   :ensure t
-  :defer t
   :config
   (add-hook 'racket-mode-hook 'enable-paredit-mode)
   (add-hook 'racket-repl-mode-hook 'enable-paredit-mode))
@@ -330,12 +311,10 @@
 (winner-mode 1)
 
 (use-package lsp-haskell
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package typescript-mode
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package web-mode
   :hook ((typescript-tsx-mode . lsp))
@@ -371,16 +350,13 @@
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
 (use-package quelpa
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package quelpa-use-package
-  :ensure t
-  :defer t)
+  :ensure t)
 
 (use-package slime
   :ensure t
-  :defer t
   :preface
   ;; Stop SLIME's REPL from grabbing DEL,
   ;; when backspacing over a '('
