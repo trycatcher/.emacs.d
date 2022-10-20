@@ -394,6 +394,9 @@
   (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
   (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit))
 
+(use-package zig-mode
+  :ensure t)
+
 (set-frame-font "Fira code-12")
 
 (load-theme 'solarized-light t)
