@@ -153,16 +153,18 @@
   (setq browse-url-browser-function 'eww-browse-url))
 
 (use-package psci
+  :hook
+  ((purescript-mode-hook . inferior-psci-mode)
+   (purescript-mode . company-mode)
+   (purescript-mode . flycheck-mode)
+   (purescript-mode-hook . turn-on-purescript-indentation))
   :config
-  (add-hook 'purescript-mode-hook 'inferior-psci-mode)
   (add-to-list 'rtog/mode-repl-alist '(purescript-mode . psci)))
 
 (use-package psc-ide
+  :hook
+  (purescript-mode . psc-ide-mode)
   :config
-  (add-hook 'purescript-mode-hook 'psc-ide-mode)
-  (add-hook 'purescript-mode-hook 'company-mode)
-  (add-hook 'purescript-mode-hook 'flycheck-mode)
-  (add-hook 'purescript-mode-hook 'turn-on-purescript-indentation)
   (setq psc-ide-rebuild-on-save t)
   ;; FIXME: This isn't working
   (setq psc-ide-add-import-on-completion t))
@@ -171,19 +173,19 @@
 (use-package clojure-mode-extra-font-locking)
 
 (use-package paredit
-  :config
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode))
+  :hook
+  (emacs-lisp-mode . enable-paredit-mode))
 
 ;; To add some colors to parens
 (use-package rainbow-delimiters
-  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  :hook
+  (prog-mode-hook . rainbow-delimiters-mode))
 
 (use-package flycheck-clj-kondo)
 
 (use-package clojure-mode
-  :config
-  (require 'flycheck-clj-kondo)
-  (add-hook 'clojure-mode-hook 'enable-paredit-mode))
+  :hook
+  (clojure-mode . enable-paredit-mode))
 
 (use-package cider
   :quelpa
@@ -207,24 +209,23 @@
         nrepl-hide-special-buffers t
         cider-repl-use-pretty-printing t
         cider-repl-result-prefix ";; => ")
-  (add-hook 'cider-mode-hook 'eldoc-mode)
-  (add-hook 'cider-repl-mode-hook 'enable-paredit-mode)
-  (add-hook 'cider-repl-mode-hook 'company-mode)
-  (add-hook 'cider-mode-hook 'company-mode)
-  (add-hook 'cider-mode-hook
-            (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)))
+  :hook
+  ((cider-mode . eldoc-mode)
+   (cider-repl-mode . enable-paredit-mode)
+   (cider-repl-mode . company-mode)
+   (cider-mode . company-mode)
+   (cider-mode . (lambda ()
+                   (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)))))
 
 (use-package clj-refactor
-  :config
-  (add-hook 'clojure-mode-hook
-            (lambda ()
-              (clj-refactor-mode 1))))
+  :hook
+  (clojure-mode . (lambda ()
+                    (clj-refactor-mode 1))))
 
 ;; Aggressively indent your clojure code
 (use-package aggressive-indent
-  :commands (aggressive-indent-mode)
-  :config
-  (add-hook 'clojure-mode-hook 'aggressive-indent-mode))
+  :hook
+  (clojure-mode . aggressive-indent-mode))
 
 (use-package ox-reveal
   :config
@@ -242,9 +243,9 @@
          ("C-c C-k" . 'rust-compile)
          ("C-c C-t" . 'rust-test)
          ("C-c C-l" . 'rust-run-clippy)))
+  :hook
+  (rust-mode . (lambda () (setq indent-tabs-mode nil)))
   :config
-  (add-hook 'rust-mode-hook
-            (lambda () (setq indent-tabs-mode nil)))
   (setq rust-format-on-save t))
 
 (use-package elpy
@@ -252,19 +253,19 @@
   (elpy-enable)
   :config
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (add-hook 'elpy-mode-hook 'flycheck-mode)
-  (add-hook 'elpy-mode-hook
-            (lambda ()
-              (add-hook 'before-save-hook 'elpy-black-fix-code nil t))))
+  :hook
+  ((elpy-mode . flycheck-mode)
+   (elpy-mode . (lambda ()
+                  (add-hook 'before-save-hook 'elpy-black-fix-code nil t)))))
 
 (use-package json-mode)
 
 (use-package sml-mode)
 
 (use-package racket-mode
-  :config
-  (add-hook 'racket-mode-hook 'enable-paredit-mode)
-  (add-hook 'racket-repl-mode-hook 'enable-paredit-mode))
+  :hook
+  ((racket-mode . enable-paredit-mode)
+   (racket-repl-mode . enable-paredit-mode)))
 
 (winner-mode 1)
 
@@ -273,7 +274,7 @@
 (use-package typescript-mode)
 
 (use-package web-mode
-  :hook ((typescript-tsx-mode . lsp))
+  :hook (typescript-tsx-mode . lsp)
   :mode (("\\.html\\'" . web-mode)
          ("\\.tsx\\'" . typescript-tsx-mode))
   :init
@@ -318,8 +319,9 @@
       nil))
   :config
   (setq inferior-lisp-program "sbcl")
-  (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
-  (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit))
+  :hook
+  ((slime-repl-mode . enable-paredit-mode)
+   (slime-repl-mode . override-slime-repl-bindings-with-paredit)))
 
 (use-package zig-mode)
 
