@@ -19,6 +19,9 @@
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")))
 
+;; Start maximised (cross-platform)
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+
 (setq inhibit-startup-message t)
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
