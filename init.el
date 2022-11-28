@@ -302,13 +302,12 @@
          (scss-mode . prettier-mode)))
 
 (use-package lsp-mode
-  :hook ((go-mode . lsp)
-         (haskell-mode . lsp)
+  :hook ((haskell-mode . lsp)
          (haskell-literate-mode . lsp))
-    :commands (lsp lsp-deferred)
-    :config
-    (setq lsp-keymap-prefix "C-c l")
-    (lsp-enable-which-key-integration t))
+  :commands (lsp lsp-deferred)
+  :config
+  (setq lsp-keymap-prefix "C-c l")
+  (lsp-enable-which-key-integration t))
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
@@ -327,6 +326,14 @@
    (slime-repl-mode . override-slime-repl-bindings-with-paredit)))
 
 (use-package zig-mode)
+
+(use-package go-mode
+  :preface
+  (defun lsp-go-save ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  :hook ((go-mode . lsp-deferred)
+         (go-mode . lsp-go-save)))
 
 (set-frame-font "Fira code-12")
 
