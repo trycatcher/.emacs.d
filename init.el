@@ -200,11 +200,6 @@
   (clojure-mode . enable-paredit-mode))
 
 (use-package cider
-  :quelpa
-  (cider
-   :fetcher github
-   :repo "clojure-emacs/cider"
-   :commit "b2cee7fc301735b403920583cc2c23dcf70990a3")
   :config
   (setq cider-repl-pop-to-buffer-on-connect t
         cider-show-error-buffer t
