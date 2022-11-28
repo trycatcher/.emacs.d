@@ -33,7 +33,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
-(require 'quelpa-use-package)
 (setq use-package-verbose t)
 ;; The :ensure keyword causes the package(s) to be installed automatically if not already present on your system:
 (setq use-package-always-ensure t)
@@ -44,6 +43,11 @@
 (setq tab-width 2)
 (defvaralias 'c-basic-offset 'tab-width)
 (defvaralias 'cperl-indent-level 'tab-width)
+
+(use-package quelpa)
+
+(use-package quelpa-use-package
+  :after (quelpa))
 
 (use-package keychain-environment)
 
@@ -304,10 +308,6 @@
     (lsp-enable-which-key-integration t))
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-
-(use-package quelpa)
-
-(use-package quelpa-use-package)
 
 (use-package slime
   :preface
