@@ -249,11 +249,13 @@
         (("C-c C-c" . 'rust-run)
          ("C-c C-k" . 'rust-compile)
          ("C-c C-t" . 'rust-test)
-         ("C-c C-l" . 'rust-run-clippy)))
+         ("C-c C-l" . 'rust-run-clippy)
+         ("C-c C-d" . 'rust-debug-wrap-or-unwrap)))
   :hook
-  (rust-mode . (lambda () (setq indent-tabs-mode nil)))
-  :config
-  (setq rust-format-on-save t))
+  ((rust-mode . lsp-deferred)
+   (rust-mode . (lambda ()
+                  (setq indent-tabs-mode nil)
+                  (setq rust-format-on-save t)))))
 
 (use-package elpy
   :init
