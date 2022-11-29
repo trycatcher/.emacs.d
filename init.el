@@ -337,6 +337,9 @@
   :hook ((go-mode . lsp-deferred)
          (go-mode . lsp-go-save)))
 
+(use-package nix-mode
+  :mode "\\.nix\\'")
+
 (set-frame-font "Fira code-12")
 
 (load-theme 'solarized-light t)
