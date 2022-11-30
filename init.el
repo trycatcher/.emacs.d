@@ -337,6 +337,10 @@
   :hook ((go-mode . lsp-deferred)
          (go-mode . lsp-go-save)))
 
+(use-package direnv
+ :config
+ (direnv-mode))
+
 (use-package nix-mode
   :mode "\\.nix\\'")
 
