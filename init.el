@@ -278,9 +278,10 @@
 
 (winner-mode 1)
 
-(use-package lsp-haskell)
-
 (use-package typescript-mode)
+
+(use-package haskell-mode
+  :hook (haskell-mode . eglot-ensure))
 
 (use-package web-mode
   :hook (typescript-tsx-mode . eglot-ensure)
