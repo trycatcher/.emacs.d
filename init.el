@@ -252,7 +252,7 @@
          ("C-c C-l" . 'rust-run-clippy)
          ("C-c C-d" . 'rust-debug-wrap-or-unwrap)))
   :hook
-  ((rust-mode . lsp-deferred)
+  ((rust-mode . eglot-ensure)
    (rust-mode . (lambda ()
                   (setq indent-tabs-mode nil)
                   (setq rust-format-on-save t)))))
@@ -283,7 +283,7 @@
 (use-package typescript-mode)
 
 (use-package web-mode
-  :hook (typescript-tsx-mode . lsp)
+  :hook (typescript-tsx-mode . eglot-ensure)
   :mode (("\\.html\\'" . web-mode)
          ("\\.tsx\\'" . typescript-tsx-mode))
   :init
@@ -329,11 +329,11 @@
 
 (use-package go-mode
   :preface
-  (defun lsp-go-save ()
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
-  :hook ((go-mode . lsp-deferred)
-         (go-mode . lsp-go-save)))
+  (defun eglot-go-save ()
+    (add-hook 'before-save-hook #'eglot-format-buffer t t)
+    (add-hook 'before-save-hook #'eglot-code-action-organize-imports t t))
+  :hook ((go-mode . eglot-ensure)
+         (go-mode . eglot-go-save)))
 
 (use-package direnv
  :config
