@@ -304,8 +304,6 @@
          (scss-mode . prettier-mode)))
 
 (use-package lsp-mode
-  :hook ((haskell-mode . lsp)
-         (haskell-literate-mode . lsp))
   :commands (lsp lsp-deferred)
   :config
   (setq lsp-keymap-prefix "C-c l")
