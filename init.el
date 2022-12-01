@@ -303,14 +303,6 @@
          (css-mode . prettier-mode)
          (scss-mode . prettier-mode)))
 
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :config
-  (setq lsp-keymap-prefix "C-c l")
-  (lsp-enable-which-key-integration t))
-
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-
 (use-package slime
   :preface
   ;; Stop SLIME's REPL from grabbing DEL,
