@@ -185,6 +185,9 @@
 (use-package clojure-mode-extra-font-locking)
 
 (use-package paredit
+  :bind
+  (:map paredit-mode-map
+        ([?\r] . nil))
   :hook
   (emacs-lisp-mode . enable-paredit-mode))
 
