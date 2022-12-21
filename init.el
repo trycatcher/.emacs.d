@@ -275,6 +275,11 @@
 (use-package sml-mode)
 
 (use-package racket-mode
+  :bind
+  (:map racket-mode-map
+   ("C-c C-k" . 'racket-run)
+   :map racket-repl-mode-map
+   ("C-c C-k" . 'racket-run))
   :hook
   ((racket-mode . enable-paredit-mode)
    (racket-repl-mode . enable-paredit-mode)))
