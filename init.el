@@ -343,6 +343,13 @@
 (use-package nix-mode
   :mode "\\.nix\\'")
 
+(use-package toolbox-tramp
+  :quelpa (toolbox-tramp
+           :fetcher github-ssh
+           :repo "fejfighter/toolbox-tramp")
+  :custom
+  (toolbox-tramp-flatpak-wrap t)) ; Use `flatpak-spawn' when conecting
+
 (set-frame-font "Fira code-12")
 
 (load-theme 'solarized-light t)
