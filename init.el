@@ -350,6 +350,8 @@
   :custom
   (toolbox-tramp-flatpak-wrap t)) ; Use `flatpak-spawn' when conecting
 
+(use-package just-mode)
+
 (use-package terraform-mode)
 
 (set-frame-font "Fira code-12")
