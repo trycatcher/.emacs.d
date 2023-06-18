@@ -352,6 +352,8 @@
 
 (use-package just-mode)
 
+(use-package justl)
+
 (use-package terraform-mode)
 
 (set-frame-font "Fira code-12")
