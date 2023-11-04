@@ -326,7 +326,12 @@
   ((slime-repl-mode . enable-paredit-mode)
    (slime-repl-mode . override-slime-repl-bindings-with-paredit)))
 
-(use-package zig-mode)
+(use-package zig-mode
+  :bind
+  (:map zig-mode-map
+        ("C-c C-k" . 'zig-run)
+        ("C-c C-t" . 'zig-test-buffer))
+  :hook ((zig-mode . enable-paredit-mode)))
 
 (use-package go-mode
   :preface
